@@ -1,3 +1,4 @@
+// These statements are not being used and are provided for reference
 INSERT INTO conductor.workflows (workflow_id,shard_id,task_id,entity,payload,total_tasks,total_partitions) VALUES (?,?,?,'workflow',?,?,?);
 INSERT INTO conductor.workflows (workflow_id,shard_id,task_id,entity,payload) VALUES (?,?,?,'task',?);
 

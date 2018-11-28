@@ -1,10 +1,11 @@
+// These statements are not being used and are provided for reference
 CREATE KEYSPACE IF NOT EXISTS conductor
   WITH replication = { 'class' : 'NetworkTopologyStrategy', 'us-east': '3'};
 
 CREATE TABLE IF NOT EXISTS conductor.workflows (
   workflow_id uuid,
   shard_id int,
-  task_id uuid,
+  task_id text,
   entity text,
   payload text,
   total_tasks int STATIC,
