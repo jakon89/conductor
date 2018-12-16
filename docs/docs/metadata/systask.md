@@ -339,11 +339,18 @@ Event task provides ability to publish an event (message) to either Conductor or
 	"sink": 'sqs:example_sqs_queue_name'
 }
 ```
+``` json
+{
+	"sink": 'googlePubSub:topic:example-projectid:example-topic-id'
+}
+```
 
 When producing an event with Conductor as sink, the event name follows the structure:
 ```conductor:<workflow_name>:<task_reference_name>```
 
 For SQS, use the **name** of the queue and NOT the URI.  Conductor looks up the URI based on the name.
+
+Please note that Pub/Sub integration does not create topic - it has to be created before it's used in conductor.
 
 !!!warning
 	When using SQS add the [ContribsModule](https://github.com/Netflix/conductor/blob/master/contribs/src/main/java/com/netflix/conductor/contribs/ContribsModule.java) to the deployment.  The module needs to be configured with AWSCredentialsProvider for Conductor to be able to use AWS APIs.
@@ -351,6 +358,7 @@ For SQS, use the **name** of the queue and NOT the URI.  Conductor looks up the 
 ### Supported Sinks
 * Conductor
 * SQS
+* Google Pub/Sub
 
 
 ### Event Task Input

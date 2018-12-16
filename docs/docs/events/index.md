@@ -20,7 +20,7 @@ Event handlers are listeners registered that executes an action when a matching 
 2.  Fail a Task
 3.  Complete a Task
 
-Event Handlers can be configured to listen to Conductor Events or an external event like SQS.
+Event Handlers can be configured to listen to Conductor Events or an external event like SQS or Google Pub/Sub.
 
 ### Configuration
 Event Handlers are configured via ```/event/``` APIs.
@@ -34,6 +34,40 @@ Event Handlers are configured via ```/event/``` APIs.
   "actions": ["see examples below"]
 }
 ```
+#### Event
+Event field is composition of queue provider and queue/subscription name.
+
+Supported queues:
+
+1.  conductor
+2.  SQS
+3.  Google Pub/Sub
+ 
+**Examples**
+```json
+{
+  ...
+  "event": "conductor",
+  ...
+}
+``` 
+Google Pub/Sub requires `event` field to contain projectID and subscriptionID.
+Please note that subscription is not created by conductor - please refer to Google Cloud docs to see how to create subscription for topic.
+
+```json
+{
+  ...
+  "event": "googlePubSub:subscription:my-awesome-project:my-subscription",
+  ...
+}
+``` 
+```json
+{
+  ...
+  "event": "sqs:my-awesome-queue",
+  ...
+}
+``` 
 #### Condition
 Condition is an expression that MUST evaluate to a boolean value.  A Javascript like syntax is supported that can be used to evaluate condition based on the payload.
 Actions are executed only when the condition evaluates to `true`.
